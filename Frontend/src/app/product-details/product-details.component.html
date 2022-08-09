@@ -1,0 +1,46 @@
+<div class="container">
+      <div class="col-lg-12 border p-3 bg-white">
+          <div class="row m-0">
+              <div class="col-lg-6 left-side-product-box pb-3">
+                  <img src={{itemproduct.imageUrl}} class="border p-3"><br>
+                  <span class="sub-img">
+                      <img src={{itemproduct.imageUrl1}} class="border p-2">
+                      <img src={{itemproduct.imageUrl2}} class="border p-2">
+                      <img src={{itemproduct.imageUrl3}} class="border p-2">
+                  </span>
+              </div>
+              <div class="col-lg-6">
+                  <div class="right-side-pro-detail border p-3 m-0">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <p class="m-0 p-0">{{itemproduct.name}}</p>
+                          </div>
+                          <div class="col-lg-12">
+                              <p class="m-0 p-0 price-pro">Rs.:{{itemproduct.price}}</p>
+                              <hr class="p-0 m-0">
+                          </div>
+                          <div class="col-lg-12 pt-2">
+                              <h5>Product Detail</h5>
+                              <span>{{itemproduct.description}}</span>
+                              <p>{{itemproduct.fulldescription}}</p>
+                              <hr class="m-0 pt-2 mt-2">
+                          </div>
+                          
+                          
+                          <div class="col-lg-12 mt-3">
+                              <div class="row">
+                                  <div class="col-lg-6 pb-2">
+                                      <a  class="btn btn-danger w-100" (click)="addtocart()">Add To Cart</a>
+                                  </div>
+                                  <div class="col-lg-6">
+                                      <a  class="btn btn-success w-100" (click)="addtocompare()">Add to compare</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>

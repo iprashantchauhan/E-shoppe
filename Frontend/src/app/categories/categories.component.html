@@ -1,0 +1,76 @@
+<section>
+    <div class="p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-sidebar">
+                    <h3>Sort by</h3>
+                    <ul>
+                        <li>Category</li>
+                            <ul>
+                                <li class=""><button class="btn" (click)="categoryfilter(categ[0])">Mens</button></li>
+                            
+                                <li><button class="btn my-2" (click)="categoryfilter(categ[1])">Womens</button></li>
+                            
+                                <li><button class="btn my-2" (click)="categoryfilter(categ[2])">Essentials</button></li>
+                            </ul>
+                            <li>Category</li>
+                            <ul>
+                                <li class=""><button class="btn" (click)="pricefilter(price[0])">less than 500</button></li>
+                            
+                                <li><button class="btn my-2" (click)="pricefilter(price[1])">500 - 1000</button></li>
+                            
+                                <li><button class="btn my-2" (click)="pricefilter(price[2])">greater than 1000</button></li>
+                            </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 padding-right" *ngIf="showdata"><!--features_items-->              
+                <div class=" carousei-item row mx-2 my-2">
+                    <div class="col-sm-3 my-2" *ngFor="let p of showdata" >
+                    
+                      <div class="card">
+                          <img class="card-img-top" src={{p.imageUrl}} alt="Card image cap" height="200px">
+                          <a href="product/{{p.id}}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{p.name}}</h5>
+                          <p class="card-text">Rs.:{{p.price}}</p>
+                          <p class="card-text">{{p.description}}</p>
+                          <a  class="btn btn-danger w-100" (click)="addtocart(p.id)">Add To Cart</a>
+                        </div>
+                      </a>
+                      </div>
+                    
+                    </div>
+                </div>    
+                    
+            <!--features_items-->
+        </div>
+            <div class="col-md-9 padding-right" *ngIf="!showdata"><!--features_items-->              
+                    <h2 class="title text-center">Featured Items</h2>
+                    <div class=" carousei-item row mx-2 my-2">
+                        <div class="col-sm-3 my-2" *ngFor="let p of product" >
+                        
+                          <div class="card">
+                              <img class="card-img-top" src={{p.imageUrl}} alt="Card image cap" height="200px">
+                              <a href="product/{{p.id}}">
+                            <div class="card-body">
+                              <h5 class="card-title">{{p.name}}</h5>
+                              <p class="card-text">Rs.:{{p.price}}</p>
+                              <p class="card-text">{{p.description}}</p>
+                              <a href="cart/{p.id}" class="btn btn-success card-link">Add to cart</a>
+                            </div>
+                          </a>
+                          </div>
+                        
+                        </div>
+                    </div>    
+                        
+                <!--features_items-->
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+

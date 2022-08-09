@@ -1,0 +1,22 @@
+<div class="container col-md-6">
+  <h2  tyle="color:red;">User Login</h2>
+  <form #LoginForm="ngForm" (ngSubmit)="userLoginFunc(user.email)">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email</label>
+      <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" id="email" name="email">
+      <span [class.d-none]="email.valid || email.untouched">Email is required</span>
+      <span [class.d-none]="!email.errors?.['pattern']">invalid Email address</span>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Password</label>
+      <input type="password" required [(ngModel)]="user.password" class="form-control"#password="ngModel" [class.is-invalid]="password.invalid && password.touched" id="password" name="password">
+      <span [class.d-none]="password.valid || password.untouched">password is required</span>
+    </div>
+    
+    <br>
+    <button type="submit" [disabled]="!LoginForm.form.valid" class="btn btn-primary">Login</button>
+    <br>
+    <a href="forgotpassword">forgot password ?</a>
+    <a href="users">Register</a>
+  </form>
+</div>

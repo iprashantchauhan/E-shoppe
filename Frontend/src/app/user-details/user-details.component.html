@@ -1,0 +1,154 @@
+
+<section class="py-2 ">
+    <div class="container py-2">
+        
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"  aria-selected="false">
+                        <i class="fa fa-user-circle-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase" >Details</span></a>
+
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"  aria-selected="false">
+                        <i class="fa fa-calendar-minus-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Change password</span></a>
+
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"  aria-selected="false">
+                        <i class="fa fa-star mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Delete Account</span></a>
+
+                   </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    
+                        <button class="font-italic mb-4 btn btn-info" onclick=userDetails(p.id)>Details</button>
+                    
+                
+                   <p> Name: {{user.name}}</p>
+                   <p> Email: {{user.email}}</p>
+                   <p> Phone Number: {{user.phoneNumber}}</p>
+                   <p> User Type: {{user.userType}}</p>
+               
+                    
+                
+                    <br>
+                   
+                    <div><h3>My Orders</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr >
+                                    <th>Purchased On</th>
+                                    <th>Items</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <ng-container *ngFor="let i of items" >
+                                <ng-container *ngIf="user.id==i.userId">
+                                    <tr *ngFor="let j of i.items ; let k=index" >
+                                    <td>{{k+1}}</td>  
+                                    <td >{{j.name}}</td>
+                                    <td>{{j.category}}</td>
+                                    <td>{{j.description}}</td>
+                                    <td>{{j.price}}</td>
+                                    </tr>
+                                    </ng-container>
+                                </ng-container> -->
+                                <ng-container *ngFor="let i of items" >
+                                    
+                                <tr *ngIf="i.userId==user.id">
+                                    <td>{{i.purchasedOn | date:'MM/dd/yyyy'}}</td> 
+                                    <td >
+                                        <ol >
+                                            <li *ngFor="let j of i.items ; let k=index">
+                                                <a href="products/{{j.id}}">
+                                                    {{j.name}}
+                                                </a><hr></li>
+                                        </ol>
+                                    </td>
+                                    <td >
+                                        
+                                            <li *ngFor="let j of i.items ; let k=index">{{j.category}}<hr></li>
+                                        
+                                    </td>
+                                    <td >
+                                        
+                                            <li *ngFor="let j of i.items ; let k=index">{{j.description}}<hr></li>
+                                        
+                                    </td>
+                                    <td >
+                                        
+                                            <li *ngFor="let j of i.items ; let k=index">Rs.{{j.price}}<hr></li>
+                                        
+                                    </td>
+                                     <td>
+                                        Rs.{{i.totalAmount}}
+                                     </td>
+                                    
+                                    
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    
+                        <div class="font-italic text-muted mb-2">
+                            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                                <!-- <form #changePasswordForm="ngForm" (ngSubmit)="change()">
+                                    
+                                    <div class="mb-3">
+                                      <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                      <input type="password" required [(ngModel)]="changePassword.oldPassword" class="form-control"#password="ngModel" [class.is-invalid]="password.invalid && password.touched" id="password" name="password">
+                                      <span [class.d-none]="password.valid || password.untouched">password is required</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                        <input type="password" required class="form-control" #newpassword="ngModel" [class.is-invalid]="newpassword.invalid && newpassword.touched" id="newpassword" name="newpassword" [(ngModel)]="changePassword.newPassword" minlength="6">
+                                        <span [class.d-none]="newpassword.valid || newpassword.untouched">Password must be 6 character long</span>
+                                         <span [class.d-none]="!newpassword.errors?.['minlength'] || password.untouched">Password  atleast 6 character </span>
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                                        <input type="password" required class="form-control" #cpassword="ngModel" [class.is-invalid]="cpassword.invalid && cpassword.touched" id="cpassword" name="cpassword" [(ngModel)]="changePassword.cPassword" >
+                                        <span [class.d-none]="cpassword.valid || cpassword.untouched">Password is required</span><br>
+                                         <span [class.d-none]="cpassword.value==password.value ">Password and confirm Password not matched </span>
+                                   
+                                      </div>
+                                      <div class="alert alert-danger" *ngIf="text!=null">
+                                        <a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+                                        {{text}}
+                                      </div>
+                                    <br>
+                                    <button type="submit" [disabled]="!changePasswordForm.form.valid" class="btn btn-primary">Change</button>
+                                    <br>
+                                  </form> -->
+                        
+                                  
+                                
+                              </div>
+                            </div>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow rounded bg-white p-5"  id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <script src="\assets\js\scripts_user_details.js"></script>

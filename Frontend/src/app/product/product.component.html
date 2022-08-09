@@ -1,0 +1,18 @@
+<div class="container">
+<div class="row">
+  <ng-container *ngFor="let p of product">
+    <div class="col-sm-3 my-2" *ngIf="p.approved==true"  >
+    <div class="card">
+        <a routerLink="/products/{{p.id}}"><img class="card-img-top" src={{p.imageUrl}} alt="Card image cap" height="200px">
+        </a>
+          <div class="card-body">
+            <h5 class="card-title"><a routerLink="/products/{{p.id}}">{{p.name}}</a></h5>
+            <p class="card-text"><a routerLink="/products/{{p.id}}">Rs.:{{p.price}}</a></p>
+            <p class="card-text"><a routerLink="/products/{{p.id}}">{{p.description}}</a></p>
+            
+          </div>
+        
+    </div>
+  </div></ng-container>
+</div>
+</div>

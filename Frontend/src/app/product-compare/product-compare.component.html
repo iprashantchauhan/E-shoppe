@@ -1,0 +1,83 @@
+<!-- <div class="container my-2">
+  
+    <div class="row my-2" style="border: 1px solid red;text-align: center;">
+      
+        <div class="col d-block mx-2 " *ngFor="let p of product" >
+            <h3>Product Image</h3>
+            
+            <img class="card-img-top" src={{p.imageUrl}} alt="Card image cap" height="70px" width="50px">
+        
+        </div>
+    </div>
+    <div class="row my-2 d-block" style="border: 1px solid red;height: 400px; text-align: center;">
+        
+        
+            <h3>Product Descriptions</h3>
+            <div class="carousel-inner mt-2" style="margin-bottom:10%;text-align: center;color: red;">
+                
+                
+                  <div class=" carousei-item row mx-2 my-2">
+                      <div class="col-sm-3 my-2" *ngFor="let p of product" >
+                      
+                        <div class="card">
+                            
+                            <a href="products/{{p.id}}">
+                          <div class="card-body">
+                            <h5 class="card-title">{{p.name}}</h5>
+                            <p class="card-text">Rs.:{{p.price}}</p>
+                            <p class="card-text">{{p.description}}</p>
+                            
+                          </div>
+                        </a>
+                        </div>
+                      
+                      </div>
+                  </div>    
+                
+              </div>
+       
+        
+    </div>
+   </div> -->
+
+   
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h3>Compare Products</h3>
+        <div class="row gx-lg-5">
+    
+         
+    
+          <!--Grid column-->
+          <!-- <div class="col-lg-2 col-md-6 mb-4" *ngFor="let p of newItems" > -->
+            <div *ngFor="let p of product.items">
+            <!-- Card -->
+            <div class="card">
+              <div class="card-header bg-white py-3">
+                <img class="card-img-top" src={{p.imageUrl}} alt="Card image cap" height="200px">
+              </div>
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{p.name}}</li>
+                  <li class="list-group-item">Rs.{{p.price}}</li>
+                  <li class="list-group-item">{{p.description}}</li>
+                  <li class="list-group-item">{{p.category}}</li>
+                  <li class="list-group-item">
+                    <button class="btn btn-danger" (click)="remcompare(p)">
+                    Remove
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer bg-white py-3">
+                <button type="button" class="btn btn-info btn-sm" (click)="addtocart(p)">Add to cart</button>
+              </div>
+            </div>
+            <!-- Card -->
+          </div>
+          <!--Grid column-->
+        </div>
+      </section>
+      <!--Section: Content-->
+    </div>

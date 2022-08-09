@@ -1,0 +1,64 @@
+<h3>Checkout</h3>
+<!-- <div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Id</label>
+        <input type="text" required  id="id" class="form-control" ngModel="customer.email" name="id">
+    </div>
+    <button type="submit" class="btn btn-success">Get Customer</button>
+  </form>
+</div> -->
+<div *ngIF="userdata.id==undefined">
+    <h1>user is undefined</h1>
+</div>
+<br/>
+<div >
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Customer Name: {{customerName}}</h2>
+    </div>
+</div>
+
+<br/>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Cart</h2>
+    </div>
+    <div class="panel-body">
+        <!-- <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Images</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items.items">
+                    <td><img src="{{item.imageUrl}} " width="40px" height="40px"></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.quantity}}</td>
+                 </tr>
+            </tbody>
+        </table> -->
+        <table class="table table-striped" style="width: 200px;">
+            <thead>
+                <tr>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{total}}</td>
+                </tr>
+            </tbody>
+        </table>        
+        <div >
+            <button (click)="buy()" class="btn btn-primary btn-lg">Buy</button>
+        </div>
+    </div>
+</div>
+</div>

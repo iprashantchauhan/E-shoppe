@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/"><img class="img" src="\assets\img\logo.jpg" ></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse mx-4" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mx-4">
+        <li class="nav-item  mx-4">
+          <a class="nav-link" href="/products">Products</a>
+        </li>
+        <li class="nav-item mx-4">
+          <a class="nav-link" href="/compare">Compare</a>
+        </li>
+        <li class="nav-item mx-4">
+          <a class="nav-link " href="/categories">Categories</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="/cart-page" class="btn btn-success mx-1 my-2 my-sm-0" >Cart<sup *ngIf="cartQuantity>0">{{cartQuantity}}</sup></a>
+        
+        <a *ngIf="user.userType==null" class="btn btn-danger mx-1 my-2 my-sm-0" href="/login">Login/Signup</a>
+        <a *ngIf="user.userType=='User'" class="btn btn-success mx-1 my-2 my-sm-0" href="/userdesc">{{user.name}}</a>
+        <a *ngIf="user.userType=='Retailer'" class="btn btn-success mx-1 my-2 my-sm-0" href="/retailerdesc">{{user.name}}</a>
+        <a *ngIf="user.userType=='Admin'" class="btn btn-success mx-1 my-2 my-sm-0" href="/admindesc">{{user.name}}</a>
+        <button *ngIf="user.userType!=null" class="btn btn-success mx-1 my-2 my-sm-0" (click)="logout()" >Logout</button>
+      </form>
+    </div>
+  </nav>
+  

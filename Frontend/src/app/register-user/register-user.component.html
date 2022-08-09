@@ -1,0 +1,130 @@
+<!-- <div class="container col-md-4">
+ <h1 style="color: red;">Register User</h1>
+  <form #RegisterationForm="ngForm" (ngSubmit)="userRegister()">
+    
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Name</label>
+      <input type="text" required #name="ngModel" name="name"  class="form-control" id="name"  name="name" [(ngModel)]="user.name">
+      <div [hidden]="(name.valid || name.pristine)||name.touched" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+    
+  
+    <div class="form-check form-check-inline" >
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="User"[(ngModel)]="user.userType" checked>
+      <label class="form-check-label" for="flexRadioDefault1" >
+       User
+      </label>
+    </div>
+        <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Retailer" [(ngModel)]="user.userType" >
+      <label class="form-check-label" for="flexRadioDefault3">
+        Retailer
+      </label>
+    </div>
+    
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email</label>
+      <input type="email" required class="form-control" #email="ngModel" id="email" name="email" [(ngModel)]="user.email" >
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        email is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Phone</label>
+      <input type="text" required class="form-control" #phone="ngModel" id="phone" name="phone" [(ngModel)]="user.phoneNumber">
+      <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+        Phone Number is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Password</label>
+      <input type="password" required class="form-control" #password="ngModel" id="password" name="password" [(ngModel)]="user.password" >
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        password is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+      <input type="password" required class="form-control" #cpassword="ngModel" id="cpassword" name="cpassword" [(ngModel)]="user.cpassword" >
+      <div [hidden]="cpassword.valid || cpassword.pristine" class="alert alert-danger">
+        confirm password is required
+      </div>
+      <div [hidden]="cpassword.value==password.value && cpassword.valid " class="alert alert-danger">
+        confirm password not matched
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="text!=null">
+      <a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+      {{text}}
+    </div>
+    
+  <button type="submit" class="btn btn-primary" [disabled]="!RegisterationForm.form.valid">Register</button>
+  </form>
+</div> -->
+<div class="container col-md-4">
+  <h1 style="color: red;">Register User</h1>
+   <form #RegisterationForm="ngForm" (ngSubmit)="userRegister()">
+     
+     <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Name</label>
+       <input type="text" required #name="ngModel" name="name"  class="form-control" id="name"  name="name" [(ngModel)]="user.name" minlength="4">
+       <div *ngIF="(name.touched || RegisterationForm.submitted)&& name.errors?.required" class="alert alert-danger">
+         Name is required
+       </div>
+       <div *ngIF="(name.touched || RegisterationForm.submitted)&& name.errors?.minlength" class="alert alert-danger">
+        Name should be atleast 4 character long
+      </div>
+     </div>
+     
+   
+     <div class="form-check form-check-inline" >
+       <input class="form-check-input" type="radio" name="flexRadioDefault"  id="flexRadioDefault1"  value="User" [(ngModel)]="user.userType">
+       <label class="form-check-label" for="flexRadioDefault1" >
+        User
+       </label>
+     </div>
+         <div class="form-check form-check-inline">
+       <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Retailer" [(ngModel)]="user.userType" >
+       <label class="form-check-label" for="flexRadioDefault3">
+         Retailer
+       </label>
+     </div>
+     
+     <div class="mb-3">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" class="form-control" id="email" name="email">
+        <span [class.d-none]="email.valid || email.untouched">Email is required</span>
+        <span [class.d-none]="!email.errors?.['pattern']">invalid Email address</span>
+      </div>
+     </div>
+     <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Phone</label>
+       <input type="text" required class="form-control" pattern="[1-9]{1}[0-9]{9}" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" id="phone" name="phone" [(ngModel)]="user.phoneNumber">
+       <span [class.d-none]="phone.valid || phone.untouched">Phone number is required</span>
+        <span [class.d-none]="!phone.errors?.['pattern']">invalid phone number</span>
+     </div>
+     <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Password</label>
+       <input type="password" required class="form-control" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" id="password" name="password" [(ngModel)]="user.password" minlength="6">
+       <span [class.d-none]="password.valid || password.untouched">Password must be 6 character long</span>
+        <span [class.d-none]="!password.errors?.['minlength'] || password.untouched">Password  atleast 6 character </span>
+     </div>
+     <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+       <input type="password" required class="form-control" #cpassword="ngModel" [class.is-invalid]="cpassword.invalid && cpassword.touched" id="cpassword" name="cpassword" [(ngModel)]="user.cpassword" >
+       <span [class.d-none]="cpassword.valid || cpassword.untouched">Password is required</span><br>
+        <span [class.d-none]="cpassword.value==password.value ">Password and confirm Password not matched </span>
+  
+     </div>
+     <div class="alert alert-danger" *ngIf="text!=null">
+       <a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+       {{text}}
+     </div>
+     
+   <button type="submit" class="btn btn-primary" [disabled]="!RegisterationForm.form.valid">Register</button>
+   </form>
+ </div>
+ 

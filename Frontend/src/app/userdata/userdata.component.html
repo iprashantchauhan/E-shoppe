@@ -1,0 +1,36 @@
+<div class="container col-md-6">
+<table class="table border">
+    <thead>
+      <tr>
+        
+          <th scope="col">Name</th>
+          <th scope="col">email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Approved</th>
+          <th scope="col">Approve</th>
+          <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let p of user">
+      <tr *ngIf="p.userType=='Retailer'">
+          
+          <td scope="row">{{p.name}}</td>
+          <td>{{p.email}}</td>
+          <td>{{p.phoneNumber}}</td>
+          <td>{{p.approved}}</td>
+          <td>
+              
+            <button class="btn btn-success" (click)="updateUser(p.id)">Approve</button>
+            
+        </td>
+          <td>
+              
+              <button class="btn btn-danger" (click)="deleteUser(p.id)">Delete</button>
+              
+          </td>
+      </tr>
+    </ng-container>
+  </tbody>
+  </table>
+</div>
